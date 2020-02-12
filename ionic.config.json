@@ -1,5 +1,8 @@
 {
   "name": "demo-contacts-vijay",
-  "integrations": {},
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }
