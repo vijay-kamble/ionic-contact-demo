@@ -32,6 +32,67 @@ export class ContactDetailsComponent implements OnInit {
       }).then(toast => toast.present());
     }
   }
+
+  async update() {
+
+    const alert = await this.alertController.create({
+      header: 'New Contact',
+      inputs: [
+        {
+          name: 'firstName',
+          type: 'text' as const,
+          value: this.contact.firstName,
+          placeholder: 'First Name'
+        },
+        {
+          name: 'lastName',
+          type: 'text' as const,
+          value: this.contact.lastName,
+          id: 'name2-id',
+          placeholder: 'Last Name'
+        },
+        {
+          name: 'phone',
+          type: 'number' as const,
+          value: this.contact.phone,
+          placeholder: 'Phone Number'
+        },
+        {
+          name: 'email',
+          type: 'url' as const,
+          value: this.contact.email,
+          placeholder: 'Email'
+        },
+        {
+          name: 'address',
+          type: 'text' as const,
+          value: this.contact.address,
+          placeholder: 'Address'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+
+          }
+        }, {
+          text: 'Ok',
+          handler: (data) => {
+            this.contactProvider.updateContact(data);
+            this.toastController.create({
+              message: ' Contact Added Successfully!',
+              duration: 3000
+            }).then(toast => toast.present());
+          }
+        }
+      ]
+
+    });
+    return await alert.present();
+  }
   dismissModal() {
     this.modalController.dismiss();
   }

@@ -1,12 +1,9 @@
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AlertController, ModalController, ToastController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 import { ContactsProviderService } from 'src/app/service/contacts-provider.service';
 import { ContactDetailsComponent } from './contact-details/contact-details.component';
-import { AddContactComponent } from './add-contact/add-contact.component';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import * as crypto from 'crypto-js';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { Contact } from './contact-model';
-import { Subscription } from 'rxjs';
 type alertInput = 'number' | 'search' | 'password' | 'time' | 'text' | 'tel' | 'url' | 'email' | 'date' | 'checkbox' | 'radio';
 @Component({
   selector: 'app-contacts',
