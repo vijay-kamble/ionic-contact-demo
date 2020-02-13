@@ -24,13 +24,33 @@ export class ContactDetailsComponent implements OnInit {
     console.log(this.contact);
   }
   deleteContact(id) {
-    if (this.contactProvider.deleteContact(id)) {
-      this.dismissModal();
-      this.toastController.create({
-        message: 'Contact Deleted Successfully!',
-        duration: 3000
-      }).then(toast => toast.present());
-    }
+    this.alertController.create({
+      header: 'Delete Contact',
+      message: 'Do you want to delete this contact?<br><h3>' + this.contact.firstName + ' ' + this.contact.lastName + '</h3>',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+
+          }
+        }, {
+          text: 'Ok',
+          handler: (data) => {
+            if (this.contactProvider.deleteContact(id)) {
+              this.dismissModal();
+              this.toastController.create({
+                message: 'Contact Deleted Successfully!',
+                duration: 3000
+              }).then(toast => toast.present());
+            }
+          }
+        }
+      ]
+    }).then(alert => alert.present());
+
+
   }
 
   async update() {
